@@ -3,6 +3,7 @@ package com.severine.api.danse.web.controllers;
 import java.sql.Timestamp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,14 @@ public class BookController {
 	@Autowired
 	private BookService application;
 	
+	@Value("auth0.client_id")
+	private String clientId;
+	
+	@Value("auth0.client_secret")
+	private String clientSecret;
+	
+	@Value("auth0.url")
+	private String url;
 
 	@RequestMapping(value = "/books", method = RequestMethod.POST, consumes = "application/json; charset=UTF-8")
 	public Reponse addOrUpdateBook(@RequestBody PostAddBook post) {
@@ -77,8 +86,7 @@ public class BookController {
 	}
 	public User getUserConnected() throws Auth0Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		AuthAPI auth0 = new AuthAPI("danse-attitude.eu.auth0.com", "DIHvZAXvHEb25_nnfUt1hBc2omau9hYh",
-				"LdiIigFunyPiUIsrIAC7aDpmwd7xKGyKR_1Ko91yuBqtZSIvQxQ6W-mOtKrb_vOo");
+		AuthAPI auth0 = new AuthAPI(url, clientId, clientSecret);
 
 		UserInfo userInfo = auth0.userInfo((String) auth.getCredentials()).execute();
 		String sub = (String) userInfo.getValues().get("sub");

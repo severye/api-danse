@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
@@ -24,6 +25,7 @@ import com.google.common.collect.ImmutableList;
 	@PropertySource("classpath:auth0.properties"),
 	@PropertySource("classpath:application.properties")
 })
+@Configuration
 public class AppConfig extends WebSecurityConfigurerAdapter {
 
     @Value(value = "${auth0.apiAudience}")
@@ -61,6 +63,13 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+//    	 CorsConfiguration configuration = new CorsConfiguration();
+//         configuration.setAllowedOrigins(ImmutableList.of("*"));
+//         configuration.setAllowedMethods(ImmutableList.of("HEAD","GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
+//         configuration.setAllowedHeaders(ImmutableList.of("Authorization", "Cache-Control", "Content-Type", "access-control-allow-origin", "x-api-key"));
+//         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//         source.registerCorsConfiguration("/**", configuration);
+//         return source;
     }
     
 }
