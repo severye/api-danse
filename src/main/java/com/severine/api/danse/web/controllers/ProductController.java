@@ -1,6 +1,7 @@
 package com.severine.api.danse.web.controllers;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,6 +46,10 @@ import com.severine.api.danse.web.models.Reponse;
 import com.severine.api.shared.S3Constants;
 import com.severine.api.shared.Utils;
 
+import com.google.common.base.Strings;
+
+import antlr.StringUtils;
+
 @RestController
 @CrossOrigin
 public class ProductController {
@@ -60,6 +65,8 @@ public class ProductController {
 	private CategoryService categoryService;
 	@Autowired
 	private ColourService colourService;
+	
+	
 	
 	public Product getProduct(Long idProduct) {
 		Product product = null;
@@ -109,6 +116,7 @@ public class ProductController {
 		String picture = post.getPicture();
 		Integer totalQuantity = post.getTotalQuantity();
 		Long idType = null;
+		
 		if(post.getType()!=null) {
 			idType = post.getType().getId();
 		}
@@ -130,7 +138,7 @@ public class ProductController {
 		}
 		List<PostAddSizeQuantity> postSizeQuantities = post.getSizeQuantities();
 		Set<SizeQuantity> sizeQuantities = new HashSet<SizeQuantity>();
-		if (picture != null && !picture.contains("https://") && !picture.equals("")) {
+		if (picture!=null && !picture.contains("https://") && !picture.equals("")) {
 			try {
 				File destination = new File("picture");
 				String pictureUTF8 = URLEncoder.encode(picture, "UTF-8");
@@ -168,7 +176,7 @@ public class ProductController {
 		
 		List<PostPicture>picturesString = post.getPictures();
 		Set<Picture>pictures = new HashSet<Picture>();
-		if(null!=picturesString) {
+		if(null!=picturesString && picturesString.size()!=0) {
 			String link;
 			Picture pct;
 			for (PostPicture picture2 : picturesString) {
@@ -187,7 +195,7 @@ public class ProductController {
 		}
 		
 		List<Long> sizes = new ArrayList<>();
-		if (postSizeQuantities != null) {
+		if (postSizeQuantities != null && postSizeQuantities.size()!=0) {
 			productsMetier.deleteAllSizeQuantitiesByIdProduct(id);
 			SizeQuantity sizeQuantity;
 			for (PostAddSizeQuantity postAddSizeQuantity : postSizeQuantities) {
