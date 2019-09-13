@@ -10,7 +10,7 @@ import com.severine.api.danse.entities.Kind;
 import com.severine.api.danse.repositories.KindRepository;
 import com.severine.api.danse.repositories.ProductRepository;
 import com.severine.api.danse.service.KindService;
-import com.severine.api.shared.Utils;
+import com.severine.api.danse.shared.Utils;
 @Service
 public class KindServiceImpl implements KindService {
 

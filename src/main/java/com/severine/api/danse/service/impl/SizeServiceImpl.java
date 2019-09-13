@@ -10,7 +10,7 @@ import com.severine.api.danse.entities.Size;
 import com.severine.api.danse.repositories.SizeQuantityRepository;
 import com.severine.api.danse.repositories.SizeRepository;
 import com.severine.api.danse.service.SizeService;
-import com.severine.api.shared.Utils;
+import com.severine.api.danse.shared.Utils;
 
 @Service
 public class SizeServiceImpl implements SizeService {

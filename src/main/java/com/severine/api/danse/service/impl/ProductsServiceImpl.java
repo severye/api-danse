@@ -33,7 +33,7 @@ import com.severine.api.danse.repositories.ProductRepository;
 import com.severine.api.danse.repositories.SizeQuantityRepository;
 import com.severine.api.danse.repositories.TypeRepository;
 import com.severine.api.danse.service.ProductsService;
-import com.severine.api.shared.Utils;
+import com.severine.api.danse.shared.Utils;
 
 @Service("ProductsService")
 public class ProductsServiceImpl implements ProductsService {

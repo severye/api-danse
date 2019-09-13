@@ -10,7 +10,7 @@ import com.severine.api.danse.entities.SuperType;
 import com.severine.api.danse.repositories.SuperTypeRepository;
 import com.severine.api.danse.repositories.TypeRepository;
 import com.severine.api.danse.service.SuperTypeService;
-import com.severine.api.shared.Utils;
+import com.severine.api.danse.shared.Utils;
 
 @Service
 public class SuperTypeServiceImpl implements SuperTypeService {

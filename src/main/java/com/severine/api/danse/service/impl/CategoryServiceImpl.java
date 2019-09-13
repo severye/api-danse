@@ -10,7 +10,7 @@ import com.severine.api.danse.entities.Category;
 import com.severine.api.danse.repositories.CategoryRepository;
 import com.severine.api.danse.repositories.ProductRepository;
 import com.severine.api.danse.service.CategoryService;
-import com.severine.api.shared.Utils;
+import com.severine.api.danse.shared.Utils;
 @Service
 public class CategoryServiceImpl implements CategoryService{
 

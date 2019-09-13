@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.severine.api.danse.service.PictureService;
+import com.severine.api.danse.shared.S3Constants;
+import com.severine.api.danse.shared.Utils;
 import com.severine.api.danse.web.helpers.Static;
 import com.severine.api.danse.web.models.Reponse;
-import com.severine.api.shared.S3Constants;
-import com.severine.api.shared.Utils;
 
 @RestController
 public class PictureController {
 
+	@Autowired
+	private Utils utils;
+	
 	@Autowired
 	private PictureService application;
 	
@@ -53,7 +56,7 @@ public class PictureController {
 			if (file.isEmpty()) {
 				continue; // next pls
 			}
-	        Utils.savePicture(S3Constants.BUCKET_TMP, S3Constants.BUCKET_DOMAIN, file.getOriginalFilename(), convert(file));
+	        utils.savePicture(S3Constants.BUCKET_TMP, S3Constants.BUCKET_DOMAIN, file.getOriginalFilename(), convert(file));
 		}
 
 	}

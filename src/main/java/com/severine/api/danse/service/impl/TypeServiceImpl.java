@@ -11,7 +11,7 @@ import com.severine.api.danse.entities.Type;
 import com.severine.api.danse.repositories.ProductRepository;
 import com.severine.api.danse.repositories.TypeRepository;
 import com.severine.api.danse.service.TypeService;
-import com.severine.api.shared.Utils;
+import com.severine.api.danse.shared.Utils;
 
 @Service
 public class TypeServiceImpl implements TypeService {

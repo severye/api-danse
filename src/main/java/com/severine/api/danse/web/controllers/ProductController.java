@@ -1,7 +1,6 @@
 package com.severine.api.danse.web.controllers;
 
 import java.io.File;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -37,18 +36,14 @@ import com.severine.api.danse.service.ColourService;
 import com.severine.api.danse.service.KindService;
 import com.severine.api.danse.service.ProductsService;
 import com.severine.api.danse.service.TypeService;
+import com.severine.api.danse.shared.S3Constants;
+import com.severine.api.danse.shared.Utils;
 import com.severine.api.danse.web.helpers.Static;
 import com.severine.api.danse.web.models.PostAddProduct;
 import com.severine.api.danse.web.models.PostAddSizeQuantity;
 import com.severine.api.danse.web.models.PostPicture;
 import com.severine.api.danse.web.models.PostSearchProducts;
 import com.severine.api.danse.web.models.Reponse;
-import com.severine.api.shared.S3Constants;
-import com.severine.api.shared.Utils;
-
-import com.google.common.base.Strings;
-
-import antlr.StringUtils;
 
 @RestController
 @CrossOrigin
@@ -65,6 +60,8 @@ public class ProductController {
 	private CategoryService categoryService;
 	@Autowired
 	private ColourService colourService;
+	@Autowired
+	private Utils utils;
 	
 	
 	
@@ -145,7 +142,7 @@ public class ProductController {
 				String urlString = S3Constants.BUCKET_DOMAIN+S3Constants.BUCKET_TMP+"/"+pictureUTF8;
 				FileUtils.copyURLToFile(new URL(urlString), destination);
 				long result = System.currentTimeMillis();
-				picture = Utils.savePicture(S3Constants.BUCKET_FINAL, S3Constants.BUCKET_DOMAIN, result+"_"+picture, destination);
+				picture = utils.savePicture(S3Constants.BUCKET_FINAL, S3Constants.BUCKET_DOMAIN, result+"_"+picture, destination);
 			}catch (Exception e) {
 				System.err.println(e);
 				return new Reponse(1, "Un problème est survenu lors de la récupération de l'image");
@@ -186,7 +183,7 @@ public class ProductController {
 					String urlString = S3Constants.BUCKET_DOMAIN+S3Constants.BUCKET_TMP+"/"+pictureUTF8;
 					FileUtils.copyURLToFile(new URL(urlString), destination);
 					long result = System.currentTimeMillis();
-					link = Utils.savePicture(S3Constants.BUCKET_FINAL, S3Constants.BUCKET_DOMAIN, result+"_"+picture2.getLink(), destination);
+					link = utils.savePicture(S3Constants.BUCKET_FINAL, S3Constants.BUCKET_DOMAIN, result+"_"+picture2.getLink(), destination);
 					pct = new Picture();
 					pct.setLink(link);
 					pictures.add(pct);						

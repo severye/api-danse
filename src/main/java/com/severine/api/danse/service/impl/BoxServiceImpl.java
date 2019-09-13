@@ -10,7 +10,7 @@ import com.severine.api.danse.entities.Box;
 import com.severine.api.danse.repositories.BoxRepository;
 import com.severine.api.danse.repositories.ProductRepository;
 import com.severine.api.danse.service.BoxService;
-import com.severine.api.shared.Utils;
+import com.severine.api.danse.shared.Utils;
 @Service
 public class BoxServiceImpl implements BoxService {
 	@Autowired
